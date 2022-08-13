@@ -64,20 +64,17 @@ while True:
             print('\n')
         else:
             if guess not in secret_word:
+                TURNS = TURNS - 1
+                letters_guessed.append(guess)
                 print("Incorrect Guess. Remaining turns :", TURNS)
-
+                print("Letters guessed:",letters_guessed)
+                print("Available letters:",starting_letters)
                 print(guessed_word_sofar(secret_word,letters_guessed))
                 # print("this is a valid guess")
                 # remaining_letters = starting_letters.remove(guess)
                 letters_guessed.append(guess)
-                TURNS = TURNS - 1
                 starting_letters.remove(guess) 
 
-                print('\n')
-                print("Incorrect guess! Turns remaining:", TURNS)
-                print("Letters guessed:",letters_guessed)
-                print("Available letters:",starting_letters)
-                print('\n')
                 
             else:
                 letters_guessed.append(guess)
