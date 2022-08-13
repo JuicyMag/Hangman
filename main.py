@@ -1,2 +1,1 @@
-print("does this commit to GitHub work?")
-print("i don't want to have to merge")
+#this is where we will have our run function that runs the game
