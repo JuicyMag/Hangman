@@ -30,11 +30,11 @@ def is_word_guessed(secret_word):
     return True 
 
 #i want this function to return the string I'm creating and manipulating with _'s
-def guessed_word_sofar(secret_word):
+def guessed_word_sofar(secret_word, letters_guessed):
     guessed_word = ''
 
     for char in secret_word:
-        if char not in secret_word:
+        if char not in letters_guessed:
             guessed_word+='_ '
         else:
             guessed_word += char
@@ -65,7 +65,8 @@ while True:
         else:
             if guess not in secret_word:
                 print("Incorrect Guess. Remaining turns :", TURNS)
-                print(guessed_word_sofar(secret_word))
+
+                print(guessed_word_sofar(secret_word,letters_guessed))
                 # print("this is a valid guess")
                 # remaining_letters = starting_letters.remove(guess)
                 letters_guessed.append(guess)
@@ -80,17 +81,19 @@ while True:
                 
             else:
                 letters_guessed.append(guess)
-                print(guessed_word_sofar(secret_word))
+                print(guessed_word_sofar(secret_word,letters_guessed))
                 print("Correct guess!Turns remaining:", TURNS)
                 print("Letters guessed:",letters_guessed)
     else:
         print("This is not a valid guess. No turn was used.")
 
+
+
     if is_word_guessed(secret_word):
         print("YOU WON! The word was: ", secret_word)
         break
-    
+
     if TURNS==0:
+        print("You ran out of guesses!")
         break
                               
-print("Game over!")
