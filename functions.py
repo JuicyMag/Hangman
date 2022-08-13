@@ -25,12 +25,25 @@ def pick_random_work(text_file):
     print(random.choice(c))
 
 
+#checks to see if the chars guessed reveal the word. DOES NOT check to see if the entire string input is equal to secret word.
 def is_word_guessed(secret_word):
     for char in secret_word:
         if char not in letters_guessed:
             return False
         
     return True 
+
+#i want this function to return the string I'm creating and manipulating with _'s
+def guessed_word_sofar(secret_word):
+    guessed_word = ''
+
+    for char in secret_word:
+        if char not in secret_word:
+            guessed_word+='_ '
+        else:
+            guessed_word += char
+    return guessed_word
+    
 
 secret_word = pick_random_work('hangman.wordlist.10000.txt')
 
