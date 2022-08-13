@@ -1,5 +1,6 @@
 #this is where our helper functions will live. 
 from curses.ascii import *
+from operator import truediv
 import random
 from tracemalloc import start
 
@@ -23,15 +24,26 @@ def pick_random_work(text_file):
     return random.choice(c)
     print(random.choice(c))
 
+
+def is_word_guessed(secret_word):
+    for char in secret_word:
+        if char not in letters_guessed:
+            return False
+        
+    return True 
+
 secret_word = pick_random_work('hangman.wordlist.10000.txt')
 
 #LOGICAL CHECKS
 ##Need to see if input is valid. Valid = is alphabetical, else throw error
-###Need to see if 
+###Need to see if letter was already guessed
+####Need to check if char was in secret word
+
+print(secret_word)
 
 while TURNS > 1:
-    guess = input("What letter would you like to guess?")    
-    if isalpha(guess):
+    guess = input("What letter would you like to guess?")   
+    if guess.isalpha():
         if guess in letters_guessed:
             print('\n')
             print("You already guessed this, pick another character!")
@@ -53,15 +65,20 @@ while TURNS > 1:
                 print("Available letters:",starting_letters)
                 print('\n')
             
+
+
             else:
                 letters_guessed.append(guess)
                 print("Correct guess!Turns remaining:", TURNS)
                 print("Letters guessed:",letters_guessed)
-                
-                
-                
+                              
     else:
-        print("This is not a valid guess. You didn't have a turn used.")
+        print("This is not a valid guess. No turn was used.")
+
+    if is_word_guessed(secret_word):
+        print("YOU WON! The word was: ", secret_word)
+
+
 print("Game over!")
 
 
