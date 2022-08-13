@@ -14,10 +14,6 @@ starting_letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
 TURNS = 6
 
 
-
-#USERS GUESS
-
-
  #DONE - returns a random word from the input file 'hangman.wordlist.10000.txt
 def pick_random_work(text_file):
     c = open(text_file,'r').read().split()
@@ -55,7 +51,10 @@ secret_word = pick_random_work('hangman.wordlist.10000.txt')
 print(secret_word)
 
 while TURNS > 1:
+
+    #USERS GUESS
     guess = input("What letter would you like to guess?")   
+
     if guess.isalpha():
         if guess in letters_guessed:
             print('\n')
@@ -66,6 +65,7 @@ while TURNS > 1:
         else:
             if guess not in secret_word:
                 print("Incorrect Guess. Remaining turns :", TURNS)
+                print(guessed_word_sofar(secret_word))
                 # print("this is a valid guess")
                 # remaining_letters = starting_letters.remove(guess)
                 letters_guessed.append(guess)
@@ -77,32 +77,20 @@ while TURNS > 1:
                 print("Letters guessed:",letters_guessed)
                 print("Available letters:",starting_letters)
                 print('\n')
-            
-
-
+                
             else:
                 letters_guessed.append(guess)
+                print(guessed_word_sofar(secret_word))
                 print("Correct guess!Turns remaining:", TURNS)
                 print("Letters guessed:",letters_guessed)
+
+        if is_word_guessed(secret_word):
+            print("YOU WON! The word was: ", secret_word)
                               
     else:
         print("This is not a valid guess. No turn was used.")
 
-    if is_word_guessed(secret_word):
-        print("YOU WON! The word was: ", secret_word)
+
 
 
 print("Game over!")
-
-
-
-
-
-
-
-
-
-
-#TESTING WORK HERE
-# print("Remaining letters are: ")
-# print(", ".join(letters_remaining))
