@@ -50,7 +50,7 @@ secret_word = pick_random_work('hangman.wordlist.10000.txt')
 
 print(secret_word)
 
-while TURNS > 1:
+while True:
 
     #USERS GUESS
     guess = input("What letter would you like to guess?")   
@@ -83,14 +83,14 @@ while TURNS > 1:
                 print(guessed_word_sofar(secret_word))
                 print("Correct guess!Turns remaining:", TURNS)
                 print("Letters guessed:",letters_guessed)
-
-        if is_word_guessed(secret_word):
-            print("YOU WON! The word was: ", secret_word)
-                              
     else:
         print("This is not a valid guess. No turn was used.")
 
-
-
-
+    if is_word_guessed(secret_word):
+        print("YOU WON! The word was: ", secret_word)
+        break
+    
+    if TURNS==0:
+        break
+                              
 print("Game over!")
